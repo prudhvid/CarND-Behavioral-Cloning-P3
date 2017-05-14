@@ -75,25 +75,38 @@ For details about how I created the training data, see the next section.
 
 ####1. Solution Design Approach
 
-The overall strategy for deriving a model architecture was to ...
+I started with the nVidia model of 5 convolutional layers followed by 4 layers of dense networks.
 
-My first step was to use a convolution neural network model similar to the ... I thought this model might be appropriate because ...
+I thought this model might be appropriate because it was already tested on a real world as mentioned in the paper and all I should be ideally doing is transfer learning
 
-In order to gauge how well the model was working, I split my image and steering angle data into a training and validation set. I found that my first model had a low mean squared error on the training set but a high mean squared error on the validation set. This implied that the model was overfitting. 
+Initially,  I drove for the first track for only once. I can see that the model is underfitting. So I increased the data set to drive around the track twice and then in the mountainues track twice. This along with the right and left camera images gave me enough training data 
 
-To combat the overfitting, I modified the model so that ...
+But still the car was not able to drive when the terrain beside the road changes. This made me think that I should convert the image to gray scale.
 
-Then I ... 
+To combat the overfitting, I modified the model to add a Dropout layer of 0.3 probablity.
 
-The final step was to run the simulator to see how well the car was driving around track one. There were a few spots where the vehicle fell off the track... to improve the driving behavior in these cases, I ....
+The final step was to run the simulator to see how well the car was driving around track one. There were a few spots where the vehicle fell off the track. Especially at the sharp turns. So I trained the model where the vehicle starts at the end of the road and comes towards the center.  
 
-At the end of the process, the vehicle is able to drive autonomously around the track without leaving the road.
+At the end of the process, the vehicle is able to drive autonomously around the track without leaving the road. And this worked on track 2 too!! :D 
 
-####2. Final Model Architecture
+#### 2. Final Model Architecture
 
-The final model architecture (model.py lines 18-24) consisted of a convolution neural network with the following layers and layer sizes ...
+The final model architecture consisted of a convolution neural network with the following layers and layer sizes
 
-Here is a visualization of the architecture (note: visualizing the architecture is optional according to the project rubric)
+1. Input - 160 x 320 x 3
+2. Preprocessing - normalization and cropping
+3. convolution with 5x5 kernal and output 24 layers
+4. convolution with 5x5 kernal and output 36 layers
+5. convolution with 5x5 kernal and output 48 layers
+6. convolution with 3x3 kernal and output 64 layers
+7. convolution with 3x3 kernal and output 64 layers
+8. Flatten
+9. Fully connected layer - output 100
+10. Fully connected - output 50 
+11. Fully connected - output 10
+12. Fully connected - output 1
+
+Here is a visualization of the architecture
 
 ![alt text][image1]
 
@@ -127,9 +140,11 @@ To augment the data sat, I also flipped images and angles otherwise the model se
 ![alt text][flipped_recovery_2]
 
 
-After the collection process, I had X number of data points. I then preprocessed this data by ...
+After the collection process, I had 29869 data points. I then preprocessed this data by converting it to gray scale.
 
 
 I finally randomly shuffled the data set and put 20% of the data into a validation set. 
 
 I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was 3 as evidenced by reducing training and validation loss. Increasing the epochs to 4 increased the validation loss which implied over fitting. I used an adam optimizer so that manually training the learning rate wasn't necessary.
+
+** A simple gray scale conversion with careful collection of training data worked well on both the tracks. Track 1 at speed 30 and track 2 at speed 12 **

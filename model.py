@@ -41,7 +41,7 @@ def pre_process(img):
     return ktf.image.rgb_to_grayscale(img)
 
 from keras.models import Sequential
-from keras.layers import Flatten, Dense, Lambda, Conv2D, Cropping2D
+from keras.layers import Flatten, Dense, Lambda, Conv2D, Cropping2D, Dropout
 
 ## model which is same as given in nVidia paper
 model = Sequential()
@@ -54,7 +54,7 @@ model.add(Conv2D(48, (5,5), strides=(2,2), activation='relu'))
 model.add(Conv2D(64, (3,3), strides=(1,1), activation='relu'))
 model.add(Conv2D(64, (3,3), strides=(1,1), activation='relu'))
 model.add(Flatten())
-
+model.add(Dropout(0.2))
 
 model.add(Dense(100))
 model.add(Dense(50))
