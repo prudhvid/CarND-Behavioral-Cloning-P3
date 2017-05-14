@@ -10,6 +10,14 @@ The goals / steps of this project are the following:
 * Test that the model successfully drives around track one without leaving the road
 * Summarize the results with a written report
 
+### Here are the links to the videos
+
+#### Track 1
+[![Track 1 video](https://img.youtube.com/vi/5VmdRuLCJSU/0.jpg)](https://www.youtube.com/watch?v=5VmdRuLCJSU)
+
+
+#### Track 2
+[![Track 2 video](https://img.youtube.com/vi/P-dPNZ0L9t4/0.jpg)](https://www.youtube.com/watch?v=P-dPNZ0L9t4)
 
 [//]: # (Image References)
 
@@ -73,7 +81,7 @@ For details about how I created the training data, see the next section.
 
 ### Model Architecture and Training Strategy
 
-####1. Solution Design Approach
+#### 1. Solution Design Approach
 
 I started with the nVidia model of 5 convolutional layers followed by 4 layers of dense networks.
 
@@ -105,10 +113,6 @@ The final model architecture consisted of a convolution neural network with the 
 10. Fully connected - output 50 
 11. Fully connected - output 10
 12. Fully connected - output 1
-
-Here is a visualization of the architecture
-
-![alt text][image1]
 
 #### 3. Creation of the Training Set & Training Process
 
